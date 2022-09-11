@@ -1,6 +1,8 @@
 # jetblack-asgi-sspi
 
-ASGI middleware for SSPI authentication on Windows.
+[ASGI](https://asgi.readthedocs.io/en/latest/index.html) middleware
+for [SSPI](https://en.wikipedia.org/wiki/Security_Support_Provider_Interface) authentication
+on Windows.
 
 This is not specific to a particular ASGI framework or server.
 
@@ -9,7 +11,7 @@ This is not specific to a particular ASGI framework or server.
 Install from the pie store.
 
 ```
-pip install bareasgi-sspi
+pip install jetblack-asgi-sspi
 ```
 
 ## Usage
@@ -74,14 +76,11 @@ if __name__ == '__main__':
 The `SPNEGOMiddleware` wraps the ASGI application. The first and only
 positional argument is the ASGI application. Optional arguments include:
 
-* `protocol` (`bytes`): Either `b"Negotiate"` or `b"NTLM"`.
+* `protocol` (`bytes`): Either `b"Negotiate"` or `b"NTLM"` (for systems not part of a domain).
 * `service` (`str`): The SPN service. Defaults to `"HTTP"`.
 * `hostname` (`str`, optional): The hostname. Defaults to `gethostname`.
-* `service_principal` (`str`, optional): The service principal.
 * `session_duration` (`timedelta`, optional): The duration of a session. Defaults to 1 hour.
 * `forbid_unauthenticated` (`bool`): If true, and authentication fails, send 403 (Forbidden). Otherwise handle the request unauthenticated.
-
-If `service_principal` if specified, it supersedes `service` and `hostname`.
 
 ### Results
 

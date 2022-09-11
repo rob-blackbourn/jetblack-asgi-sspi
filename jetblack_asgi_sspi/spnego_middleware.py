@@ -91,7 +91,6 @@ class SPNEGOMiddleware:
             protocol: Literal[b'Negotiate', b'NTLM'] = b'Negotiate',
             service: str = 'HTTP',
             hostname: Optional[str] = None,
-            service_principal: Optional[str] = None,
             session_duration: timedelta = timedelta(hours=1),
             forbid_unauthenticated: bool = True
     ) -> None:
@@ -103,8 +102,6 @@ class SPNEGOMiddleware:
                 The protocol. Defaults to b'Negotiate'.
             service (str, optional): The service. Defaults to 'HTTP'.
             hostname (Optional[str], optional): The hostname. Defaults to None.
-            service_principal (Optional[str], optional): The service principal
-                (overrides service and hostname). Defaults to None.
             session_duration (timedelta, optional): The duration of a session
                 before re-authentication is performed. Defaults to
                 `timedelta(hours=1)`.
@@ -116,9 +113,7 @@ class SPNEGOMiddleware:
         self.protocol = protocol
         self.forbid_unauthenticated = forbid_unauthenticated
 
-        if service_principal is not None:
-            service, hostname = service_principal.split('@')
-        elif hostname is None:
+        if hostname is None:
             hostname = socket.gethostname()
 
         self._session_manager = SPNEGOSessionManager(
