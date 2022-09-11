@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "jetblack-asgi-sspi"
+version = "4.0.0-rc0"
+description = "ASGI middleware for SSPI"
+authors = ["Rob Blackbourn <rob.blackbourn@gmail.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [
+    { include = "jetblack_asgi_sspi" }
+]
+repository = "https://github.com/rob-blackbourn/jetblack-asgi-sspi"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+bareutils = "^4.0.1"
+pyspnego = "^0.6.0"
+jetblack-asgi-typing = "^0.4.0"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.7.0"
+pylint = "^2.15"
+mypy = "^0.971"
+hypercorn = "^0.14.3"
+bareasgi = "^4.1.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
