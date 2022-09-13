@@ -6,6 +6,8 @@ on Windows.
 
 This is not specific to a particular ASGI framework or server.
 
+The implementation uses the [pyspnego](https://github.com/jborean93/pyspnego) package.
+
 ## Installation
 
 Install from the pie store.
